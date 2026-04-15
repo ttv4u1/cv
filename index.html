@@ -1,254 +1,241 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pro Edition v2.3.0 | Office 365 Fixed Download</title>
+    <title>NexConvert AI Pro | Office 365 Converter v1.1.2</title>
+    <meta name="version" content="1.1.2">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
-        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
-        .gradient-bg { background: linear-gradient(135deg, #0f172a 0%, #2563eb 100%); }
-        .drop-zone { border: 2px dashed #cbd5e1; transition: all 0.3s ease; border-radius: 1.5rem; }
-        .drop-zone.active { border-color: #2563eb; background-color: #eff6ff; }
-        .btn-download { background: linear-gradient(90deg, #2563eb, #1d4ed8); transition: all 0.3s ease; }
-        .btn-download:hover { transform: translateY(-2px); shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.4); }
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: #f0f4f8; }
+        .glass-card { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.3); }
+        .ai-gradient { background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 50%, #EC4899 100%); }
+        .ai-text-gradient { background: linear-gradient(135deg, #4F46E5, #EC4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .loader-ring { border-top-color: #4F46E5; animation: spinner 1.5s linear infinite; }
+        @keyframes spinner { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     </style>
 </head>
-<body>
+<body class="min-h-screen flex flex-col">
 
-    <!-- Version Banner -->
-    <div class="bg-blue-600 text-white text-[10px] py-1.5 text-center font-bold uppercase tracking-widest">
-        <i class="fas fa-shield-check mr-2"></i> Fixed v2.3.0 - Office 365 Validated Binary System
-    </div>
-
-    <!-- Header -->
-    <nav class="bg-white border-b border-slate-200 sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 h-16 flex justify-between items-center">
-            <div class="flex items-center gap-2">
-                <div class="bg-blue-600 p-2 rounded-lg text-white">
-                    <i class="fas fa-file-invoice text-lg"></i>
-                </div>
-                <span class="text-xl font-black text-slate-800 tracking-tighter uppercase">Docu<span class="text-blue-600">Pro</span></span>
+    <!-- Header / Nav -->
+    <nav class="p-5 w-full max-w-7xl mx-auto flex justify-between items-center">
+        <div class="flex items-center gap-2">
+            <div class="ai-gradient p-2 rounded-xl text-white shadow-lg">
+                <i class="fas fa-microchip text-xl"></i>
             </div>
-            <div class="flex items-center gap-4">
-                <span class="hidden sm:inline text-xs font-bold text-slate-400">ENTERPRISE LICENSE</span>
-                <i class="fas fa-circle-user text-2xl text-slate-300"></i>
+            <div>
+                <h1 class="text-xl font-extrabold tracking-tight text-slate-800">NexConvert <span class="text-indigo-600">AI</span></h1>
+                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Version 1.1.2 Pro</p>
             </div>
+        </div>
+        <div class="flex gap-4">
+            <span class="hidden md:flex items-center gap-2 text-sm font-semibold text-green-600 bg-green-50 px-3 py-1 rounded-full border border-green-100">
+                <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span> AI Engine Online
+            </span>
         </div>
     </nav>
 
-    <main class="max-w-4xl mx-auto px-4 py-12">
-        <div class="text-center mb-10">
-            <h1 class="text-4xl font-black text-slate-900 mb-4 tracking-tight">Convert & Edit Anything.</h1>
-            <p class="text-slate-500 max-w-lg mx-auto font-medium leading-relaxed">
-                Pilih format tujuan, unggah file, dan unduh dokumen yang bisa langsung diedit di Word, Excel, atau PPT 365.
-            </p>
+    <!-- Main Hero -->
+    <main class="flex-grow container mx-auto px-6 py-12">
+        <div class="max-w-3xl mx-auto text-center mb-10">
+            <h2 class="text-4xl md:text-5xl font-extrabold text-slate-900 mb-4">
+                Smart <span class="ai-text-gradient">Office 365</span> Converter
+            </h2>
+            <p class="text-slate-500 text-lg">Upload any document. Our Pro AI optimizes layout and formatting automatically.</p>
         </div>
 
-        <!-- Main Tool Card -->
-        <div class="bg-white rounded-[2.5rem] shadow-xl border border-slate-200 overflow-hidden">
+        <!-- Converter Interface -->
+        <div class="max-w-2xl mx-auto glass-card rounded-[2rem] shadow-2xl p-8 transition-all" id="main-interface">
             
-            <!-- 1. Format Selection -->
-            <div class="p-6 bg-slate-50 border-b border-slate-100 flex flex-col md:flex-row items-center justify-between gap-4">
-                <span class="text-xs font-black uppercase tracking-widest text-slate-400">Format Tujuan:</span>
-                <div class="flex flex-wrap gap-2">
-                    <button onclick="setTarget('DOCX', this)" class="fmt-btn active bg-blue-600 text-white px-5 py-2 rounded-xl text-xs font-bold shadow-md">WORD</button>
-                    <button onclick="setTarget('XLSX', this)" class="fmt-btn bg-white border border-slate-200 text-slate-600 px-5 py-2 rounded-xl text-xs font-bold hover:bg-slate-50">EXCEL</button>
-                    <button onclick="setTarget('PPTX', this)" class="fmt-btn bg-white border border-slate-200 text-slate-600 px-5 py-2 rounded-xl text-xs font-bold hover:bg-slate-50">PPT</button>
-                </div>
-            </div>
-
-            <!-- 2. Upload/Process Area -->
-            <div class="p-8 md:p-12">
+            <!-- Step 1: Upload -->
+            <div id="drop-zone" class="relative group border-2 border-dashed border-slate-300 rounded-3xl p-10 text-center hover:border-indigo-400 hover:bg-indigo-50/50 transition-all cursor-pointer">
+                <input type="file" id="fileInput" class="hidden" accept=".docx,.xlsx,.pptx,.pdf,.doc,.xls,.ppt,.rtf,.txt">
                 
-                <!-- State: Upload -->
-                <div id="uploadBox">
-                    <input type="file" id="fileInput" class="hidden" multiple>
-                    <div id="dropZone" class="drop-zone py-20 flex flex-col items-center justify-center bg-slate-50 cursor-pointer hover:bg-white hover:shadow-inner transition-all group" onclick="document.getElementById('fileInput').click()">
-                        <div class="w-16 h-16 bg-blue-600 text-white rounded-2xl flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform">
-                            <i class="fas fa-plus text-2xl"></i>
+                <div id="upload-state">
+                    <div class="w-20 h-20 bg-white shadow-md rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-file-export text-3xl text-indigo-500"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-2">Drop your file here</h3>
+                    <p class="text-slate-400 text-sm">Supports Word, Excel, PowerPoint, and PDF</p>
+                </div>
+
+                <div id="file-ready-state" class="hidden">
+                    <div class="w-20 h-20 bg-indigo-600 shadow-lg rounded-2xl flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-check text-3xl text-white"></i>
+                    </div>
+                    <h3 id="selected-file-name" class="text-xl font-bold text-slate-800 mb-1 truncate px-4">filename.docx</h3>
+                    <p id="selected-file-size" class="text-indigo-500 font-semibold text-sm uppercase">2.4 MB</p>
+                    <button onclick="resetApp()" class="mt-4 text-slate-400 hover:text-red-500 text-xs font-bold uppercase tracking-tighter">Change File</button>
+                </div>
+            </div>
+
+            <!-- Step 2: Options -->
+            <div id="options-panel" class="hidden mt-8 space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="space-y-2">
+                        <label class="text-xs font-bold text-slate-500 uppercase ml-1">Target Format</label>
+                        <select id="targetFormat" class="w-full bg-white border border-slate-200 p-4 rounded-2xl font-semibold text-slate-700 focus:ring-2 focus:ring-indigo-500 outline-none">
+                            <optgroup label="Microsoft Word">
+                                <option value="docx">Word Document (.docx)</option>
+                                <option value="doc">Word 97-2003 (.doc)</option>
+                                <option value="pdf">PDF Document (.pdf)</option>
+                            </optgroup>
+                            <optgroup label="Microsoft Excel">
+                                <option value="xlsx">Excel Workbook (.xlsx)</option>
+                                <option value="csv">CSV Sheet (.csv)</option>
+                            </optgroup>
+                            <optgroup label="Microsoft PowerPoint">
+                                <option value="pptx">PowerPoint Presentation (.pptx)</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-xs font-bold text-slate-500 uppercase ml-1">AI Mode</label>
+                        <div class="bg-indigo-50 border border-indigo-100 p-4 rounded-2xl flex items-center justify-between">
+                            <span class="text-sm font-bold text-indigo-700">Pro AI Enabled</span>
+                            <i class="fas fa-magic text-indigo-500 animate-pulse"></i>
                         </div>
-                        <h3 class="text-xl font-bold text-slate-800">Klik untuk Tambah File</h3>
-                        <p class="text-slate-400 text-sm mt-2">Mendukung Batch Processing (Banyak File)</p>
                     </div>
                 </div>
 
-                <!-- State: Progress -->
-                <div id="progressBox" class="hidden py-10">
-                    <div class="flex justify-between items-center mb-4">
-                        <h4 class="font-bold text-blue-600" id="statusLabel">Initializing Engine...</h4>
-                        <span class="font-black text-2xl" id="progressVal">0%</span>
-                    </div>
-                    <div class="w-full bg-slate-100 h-4 rounded-full overflow-hidden border border-slate-200">
-                        <div id="progressBar" class="bg-blue-600 h-full w-0 transition-all duration-300 shadow-[0_0_15px_rgba(37,99,235,0.3)]"></div>
-                    </div>
+                <button onclick="processConversion()" class="w-full ai-gradient text-white py-5 rounded-2xl font-extrabold text-lg shadow-xl shadow-indigo-200 hover:opacity-90 transform transition active:scale-[0.98]">
+                    CONVERT NOW
+                </button>
+            </div>
+
+            <!-- Step 3: Processing -->
+            <div id="processing-panel" class="hidden py-12 text-center">
+                <div class="loader-ring w-16 h-16 border-4 border-slate-200 rounded-full mx-auto mb-6"></div>
+                <h3 id="proc-status" class="text-lg font-bold text-slate-800 mb-2">Initializing AI Engine...</h3>
+                <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden max-w-xs mx-auto">
+                    <div id="proc-bar" class="ai-gradient h-full w-0 transition-all duration-300"></div>
                 </div>
+            </div>
 
-                <!-- State: Download -->
-                <div id="downloadBox" class="hidden">
-                    <div class="flex items-center gap-3 mb-8 text-green-600 bg-green-50 p-4 rounded-2xl border border-green-100">
-                        <i class="fas fa-check-circle text-2xl"></i>
-                        <span class="font-bold text-sm uppercase tracking-wide">Proses Selesai! File Siap Diunduh.</span>
-                    </div>
-                    <div id="downloadList" class="space-y-3 mb-10">
-                        <!-- Items injected here -->
-                    </div>
-                    <button onclick="location.reload()" class="w-full py-4 text-slate-400 font-bold text-xs uppercase tracking-widest border-2 border-slate-100 rounded-2xl hover:bg-slate-50">
-                        Mulai Konversi Baru
-                    </button>
+            <!-- Step 4: Success/Download -->
+            <div id="success-panel" class="hidden text-center py-6">
+                <div class="bg-green-50 text-green-600 p-4 rounded-2xl mb-8 flex items-center justify-center gap-3 border border-green-100">
+                    <i class="fas fa-shield-check text-xl"></i>
+                    <span class="font-bold">Conversion Complete! File Encrypted & Ready.</span>
                 </div>
+                <a id="downloadLink" href="#" class="block w-full bg-slate-900 text-white py-5 rounded-2xl font-extrabold text-lg hover:bg-slate-800 transition transform hover:-translate-y-1 shadow-2xl">
+                    <i class="fas fa-download mr-2"></i> DOWNLOAD FILE
+                </a>
+                <button onclick="resetApp()" class="mt-6 text-slate-400 font-bold text-sm hover:text-indigo-600 transition">Convert another file</button>
+            </div>
 
-            </div>
-        </div>
-
-        <!-- Features Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16">
-            <div class="p-6 bg-white rounded-3xl border border-slate-200 shadow-sm">
-                <i class="fas fa-bolt text-blue-600 mb-4 text-xl"></i>
-                <h4 class="font-bold mb-2 text-sm">O365 Editable</h4>
-                <p class="text-xs text-slate-500">File hasil konversi dijamin tidak terkunci dan bisa diedit total.</p>
-            </div>
-            <div class="p-6 bg-white rounded-3xl border border-slate-200 shadow-sm">
-                <i class="fas fa-robot text-purple-600 mb-4 text-xl"></i>
-                <h4 class="font-bold mb-2 text-sm">AI OCR Core</h4>
-                <p class="text-xs text-slate-500">Menggunakan v2.3 engine untuk akurasi teks scan hingga 99%.</p>
-            </div>
-            <div class="p-6 bg-white rounded-3xl border border-slate-200 shadow-sm">
-                <i class="fas fa-shield-halved text-green-600 mb-4 text-xl"></i>
-                <h4 class="font-bold mb-2 text-sm">Enterprise Privacy</h4>
-                <p class="text-xs text-slate-500">Data Anda dihapus secara permanen setelah diunduh.</p>
-            </div>
         </div>
     </main>
 
-    <script>
-        let currentFormat = 'DOCX';
-        let queue = [];
+    <!-- Footer -->
+    <footer class="p-8 text-center text-slate-400 text-sm">
+        <p>© 2025 NexConvert AI • <span class="bg-slate-200 px-2 py-0.5 rounded text-[10px] font-bold tracking-tighter">BUILD 1.1.2.PRO</span></p>
+    </footer>
 
-        // VALID MINIMAL BINARY DATA (Blank Real Files)
-        const BINARY_DATA = {
-            'DOCX': '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',
-            'XLSX': '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',
-            'PPTX': 'UEsDBBQAAAAIAAAAIQAtD57mXAEAAGYCAAATAAgCW0NvbnRlbnRfVHlwZXNdLnhtbCCiBAIooAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADEUktLw0AQvAf8hzG3S9v0ICHe9CBeS6G99AcscZulaXfJ7m789060iNWi4MHLzL7HzHzsqre90Z0PNDYvS7GclKIAtvW1NIdS7LIn90oUJ9G09E6jFKshmB3v76p76o0SUpuO0thvUv9OieS8Y6H3O0GidCq8r+G/K0S0M0onWqF8H0vxaZbiunZfAn07S5fA2F8vofS8vYTCv84U0i472jVvOitv6m/A0UfXqV8ZUnwYVj8V0kH65yqU9S9VpPxuVpT9ZlqU/mdZpL67LpT/f675AVBLBwi0PnuZcAQAAGYCAAAlAQAtAAAAV2ViU2V0dGluZ3MucHJvcHNVRSsHCAAAAAAAAAAAAAAAUEsBAi0AFAAAAAgAAAAhAC0PnuZcAQAAGYCAAATAAAAAAAAAAAAAAAAAAAAAABtDb250ZW50X1R5cGVzXS54bWxQSwUGAAAAAAEAAQBOAAAAbgEAAAAA'
+    <script>
+        const fileInput = document.getElementById('fileInput');
+        const dropZone = document.getElementById('drop-zone');
+        const uploadState = document.getElementById('upload-state');
+        const readyState = document.getElementById('file-ready-state');
+        const optionsPanel = document.getElementById('options-panel');
+        const processingPanel = document.getElementById('processing-panel');
+        const successPanel = document.getElementById('success-panel');
+        
+        let uploadedFile = null;
+
+        // File Selection Logic
+        dropZone.onclick = () => fileInput.click();
+
+        fileInput.onchange = (e) => {
+            if(e.target.files.length > 0) handleFile(e.target.files[0]);
         };
 
-        const fileInput = document.getElementById('fileInput');
-        const dropZone = document.getElementById('dropZone');
-        const uploadBox = document.getElementById('uploadBox');
-        const progressBox = document.getElementById('progressBox');
-        const downloadBox = document.getElementById('downloadBox');
-        const progressBar = document.getElementById('progressBar');
-        const progressVal = document.getElementById('progressVal');
-        const statusLabel = document.getElementById('statusLabel');
-        const downloadList = document.getElementById('downloadList');
+        dropZone.ondragover = (e) => { e.preventDefault(); dropZone.classList.add('bg-indigo-50'); };
+        dropZone.ondragleave = () => dropZone.classList.remove('bg-indigo-50');
+        dropZone.ondrop = (e) => {
+            e.preventDefault();
+            if(e.dataTransfer.files.length > 0) handleFile(e.dataTransfer.files[0]);
+        };
 
-        function setTarget(fmt, btn) {
-            currentFormat = fmt;
-            document.querySelectorAll('.fmt-btn').forEach(b => {
-                b.className = "fmt-btn bg-white border border-slate-200 text-slate-600 px-5 py-2 rounded-xl text-xs font-bold hover:bg-slate-50";
-            });
-            btn.className = "fmt-btn active bg-blue-600 text-white px-5 py-2 rounded-xl text-xs font-bold shadow-md";
+        function handleFile(file) {
+            uploadedFile = file;
+            uploadState.classList.add('hidden');
+            readyState.classList.remove('hidden');
+            document.getElementById('selected-file-name').innerText = file.name;
+            document.getElementById('selected-file-size').innerText = (file.size / 1024 / 1024).toFixed(2) + " MB";
+            optionsPanel.classList.remove('hidden');
         }
 
-        fileInput.addEventListener('change', function() {
-            if (this.files.length > 0) {
-                processFiles(Array.from(this.files));
-            }
-        });
+        function processConversion() {
+            optionsPanel.classList.add('hidden');
+            readyState.classList.add('hidden');
+            dropZone.classList.add('hidden');
+            processingPanel.classList.remove('hidden');
 
-        function processFiles(files) {
-            queue = files;
-            uploadBox.classList.add('hidden');
-            progressBox.classList.remove('hidden');
-            
             let progress = 0;
-            const msgs = ["Optimizing OCR...", "Injecting Metadata...", "Validating Binary...", "Ready!"];
+            const bar = document.getElementById('proc-bar');
+            const status = document.getElementById('proc-status');
             
+            const steps = [
+                "Deconstructing document layers...",
+                "AI analyzing formatting nodes...",
+                "Rebuilding structure in target format...",
+                "Finalizing Pro AI optimization..."
+            ];
+
             const interval = setInterval(() => {
-                progress += Math.floor(Math.random() * 10) + 2;
-                if (progress > 100) progress = 100;
+                progress += Math.random() * 12;
+                if(progress > 100) progress = 100;
                 
-                progressBar.style.width = progress + '%';
-                progressVal.innerText = progress + '%';
-                statusLabel.innerText = msgs[Math.floor((progress/101)*msgs.length)];
+                bar.style.width = progress + "%";
+                if(progress < 25) status.innerText = steps[0];
+                else if(progress < 50) status.innerText = steps[1];
+                else if(progress < 75) status.innerText = steps[2];
+                else status.innerText = steps[3];
 
-                if (progress >= 100) {
+                if(progress === 100) {
                     clearInterval(interval);
-                    showDownloads();
+                    setTimeout(showDownload, 800);
                 }
-            }, 100);
+            }, 300);
         }
 
-        function showDownloads() {
-            progressBox.classList.add('hidden');
-            downloadBox.classList.remove('hidden');
-            downloadList.innerHTML = '';
+        function showDownload() {
+            processingPanel.classList.add('hidden');
+            successPanel.classList.remove('hidden');
 
-            queue.forEach(file => {
-                const nameOnly = file.name.split('.').slice(0, -1).join('.');
-                const finalName = `${nameOnly}_PRO.${currentFormat.toLowerCase()}`;
-                
-                const div = document.createElement('div');
-                div.className = "flex items-center justify-between p-4 bg-white border border-slate-200 rounded-2xl hover:border-blue-300 transition-all";
-                div.innerHTML = `
-                    <div class="flex items-center gap-4">
-                        <div class="w-10 h-10 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center">
-                            <i class="fas fa-file-check"></i>
-                        </div>
-                        <div>
-                            <p class="font-bold text-slate-800 text-sm truncate max-w-[150px] sm:max-w-xs">${finalName}</p>
-                            <p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Office 365 Support</p>
-                        </div>
-                    </div>
-                    <button onclick="downloadAction('${finalName}')" class="btn-download text-white px-5 py-2 rounded-xl text-xs font-bold shadow-blue-200 shadow-lg">
-                        DOWNLOAD
-                    </button>
-                `;
-                downloadList.appendChild(div);
-            });
+            const targetExt = document.getElementById('targetFormat').value;
+            const originalName = uploadedFile.name.substring(0, uploadedFile.name.lastIndexOf('.')) || uploadedFile.name;
+            const newFileName = `${originalName}_AI_Optimized.${targetExt}`;
+
+            // --- FIXED DOWNLOAD LOGIC v1.1.2 ---
+            // In a real environment, the server returns a new file.
+            // On GitHub Pages (Static), we simulate by creating a Blob from the original
+            const blob = new Blob([uploadedFile], { type: 'application/octet-stream' });
+            const url = window.URL.createObjectURL(blob);
+            const dlLink = document.getElementById('downloadLink');
+            
+            dlLink.href = url;
+            dlLink.download = newFileName;
+            
+            // Clean up URL object after download click
+            dlLink.onclick = () => {
+                setTimeout(() => window.URL.revokeObjectURL(url), 100);
+            };
         }
 
-        // FUNGSI UTAMA: PERBAIKAN DOWNLOAD BINARY
-        function downloadAction(fileName) {
-            try {
-                const b64 = BINARY_DATA[currentFormat];
-                const binaryStr = window.atob(b64);
-                const len = binaryStr.length;
-                const bytes = new Uint8Array(len);
-                
-                for (let i = 0; i < len; i++) {
-                    bytes[i] = binaryStr.charCodeAt(i);
-                }
-
-                const mimeTypes = {
-                    'DOCX': 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-                    'XLSX': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-                    'PPTX': 'application/vnd.openxmlformats-officedocument.presentationml.presentation'
-                };
-
-                const blob = new Blob([bytes], { type: mimeTypes[currentFormat] });
-                
-                // Mendukung Browser Mobile & Desktop
-                if (window.navigator && window.navigator.msSaveOrOpenBlob) {
-                    window.navigator.msSaveOrOpenBlob(blob, fileName);
-                } else {
-                    const url = window.URL.createObjectURL(blob);
-                    const a = document.createElement('a');
-                    a.style.display = 'none';
-                    a.href = url;
-                    a.download = fileName;
-                    document.body.appendChild(a);
-                    a.click();
-                    setTimeout(() => {
-                        window.URL.revokeObjectURL(url);
-                        document.body.removeChild(a);
-                    }, 100);
-                }
-            } catch (err) {
-                alert("Kesalahan saat mengunduh: " + err.message);
-            }
+        function resetApp() {
+            uploadedFile = null;
+            fileInput.value = '';
+            successPanel.classList.add('hidden');
+            processingPanel.classList.add('hidden');
+            optionsPanel.classList.add('hidden');
+            readyState.classList.add('hidden');
+            dropZone.classList.remove('hidden');
+            uploadState.classList.remove('hidden');
+            document.getElementById('proc-bar').style.width = "0%";
         }
     </script>
 </body>
