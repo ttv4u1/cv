@@ -1,321 +1,275 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pro-Vision Ultra | System, Network & AI Doc Converter</title>
+    <title>Pro Edition - All Office Document Converter & AI Suite</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&family=JetBrains+Mono&display=swap" rel="stylesheet">
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root {
-            --glass: rgba(255, 255, 255, 0.07);
-            --glass-border: rgba(255, 255, 255, 0.15);
-            --accent-cyan: #00f2ff;
-            --accent-gold: #ffcc00;
-        }
-
-        body {
-            background: radial-gradient(circle at center, #0f172a, #020617);
-            color: white;
-            font-family: 'Poppins', sans-serif;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-
-        .glass-panel {
-            background: var(--glass);
-            backdrop-filter: blur(25px);
-            border: 1px solid var(--glass-border);
-            border-radius: 30px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-        }
-
-        /* 3D Upload Zone */
-        .upload-zone {
-            border: 2px dashed rgba(255,255,255,0.2);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            background: rgba(255,255,255,0.03);
-        }
-
-        .upload-zone:hover {
-            border-color: var(--accent-cyan);
-            background: rgba(0, 242, 255, 0.05);
-            transform: translateY(-5px);
-        }
-
-        .handwriting {
-            font-family: 'Dancing Script', cursive;
-            background: linear-gradient(to right, #00f2ff, #bc13fe);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* Nav Buttons */
-        .nav-btn {
-            padding: 12px 24px;
-            border-radius: 15px;
-            cursor: pointer;
-            transition: 0.3s;
-            background: rgba(255,255,255,0.05);
-            font-size: 0.85rem;
-        }
-        .nav-btn.active {
-            background: var(--accent-cyan);
-            color: black;
-            font-weight: 600;
-            box-shadow: 0 0 20px rgba(0, 242, 255, 0.4);
-        }
-
-        /* Progress Bar Pixar Style */
-        .progress-container {
-            height: 8px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 10px;
-            overflow: hidden;
-        }
-        .progress-bar {
-            height: 100%;
-            width: 0%;
-            background: linear-gradient(90deg, #00f2ff, #bc13fe);
-            box-shadow: 0 0 15px var(--accent-cyan);
-            transition: width 0.4s;
-        }
-
-        .doc-icon {
-            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5));
-        }
-
-        @keyframes pulse-glow {
-            0% { box-shadow: 0 0 5px var(--accent-cyan); }
-            50% { box-shadow: 0 0 20px var(--accent-cyan); }
-            100% { box-shadow: 0 0 5px var(--accent-cyan); }
-        }
-        .active-process { animation: pulse-glow 2s infinite; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .gradient-bg { background: linear-gradient(135deg, #0061ff 0%, #60efff 100%); }
+        .pro-card:hover { transform: translateY(-5px); transition: all 0.3s ease; }
+        .drop-zone { border: 2px dashed #cbd5e1; transition: all 0.3s ease; }
+        .drop-zone.active { border-color: #0061ff; background-color: #f0f7ff; }
     </style>
 </head>
-<body class="p-4 md:p-10">
+<body class="bg-gray-50">
 
-    <div id="main-interface">
-        <!-- Header -->
-        <header class="flex flex-col md:flex-row justify-between items-center mb-10 gap-6">
-            <div>
-                <h1 class="handwriting text-5xl md:text-6xl mb-2">Pro-Vision Hub</h1>
-                <p class="text-xs tracking-[0.3em] text-cyan-400 font-light">INTELLIGENT SYSTEM & DOCUMENT SUITE</p>
-            </div>
-            <div class="flex gap-3">
-                <div class="glass-panel px-4 py-2 text-xs flex items-center gap-2">
-                    <span class="w-2 h-2 bg-green-500 rounded-full animate-ping"></span>
-                    AI ENGINE: v4.2 PRO
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center">
+                    <i class="fas fa-file-pdf text-blue-600 text-3xl mr-2"></i>
+                    <span class="text-xl font-bold text-gray-800">DocuMaster <span class="text-blue-600">PRO</span></span>
                 </div>
-                <button onclick="exportToPDF()" class="bg-white/10 hover:bg-white/20 px-5 py-2 rounded-xl border border-white/20 text-sm transition-all">
-                    Export Report
-                </button>
-            </div>
-        </header>
-
-        <!-- Navigation -->
-        <nav class="flex gap-3 mb-10 overflow-x-auto no-scrollbar pb-2">
-            <button onclick="switchTab('converter')" class="nav-btn active" id="btn-converter">📄 Smart Converter</button>
-            <button onclick="switchTab('system')" class="nav-btn" id="btn-system">💻 System Health</button>
-            <button onclick="switchTab('network')" class="nav-btn" id="btn-network">🌐 Network Pro</button>
-        </nav>
-
-        <!-- Section 1: AI DOCUMENT CONVERTER -->
-        <div id="tab-converter" class="space-y-6">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Upload Area -->
-                <div class="glass-panel p-8 col-span-1 md:col-span-2 flex flex-col items-center justify-center upload-zone" id="dropZone">
-                    <input type="file" id="fileInput" class="hidden" multiple onchange="handleFiles(this.files)">
-                    <div class="mb-6 text-6xl doc-icon">📂</div>
-                    <h3 class="text-xl font-semibold mb-2">Drop documents here</h3>
-                    <p class="text-gray-400 text-sm mb-6 text-center">Support PDF, DOCX, JPG, PNG, TXT (Max 50MB)</p>
-                    <button onclick="document.getElementById('fileInput').click()" class="bg-cyan-500 hover:bg-cyan-400 text-black font-bold py-3 px-8 rounded-2xl transition-all transform active:scale-95">
-                        Select Files
-                    </button>
+                <div class="hidden md:flex space-x-8 items-center font-medium text-gray-600">
+                    <a href="#" class="hover:text-blue-600">Solutions</a>
+                    <a href="#" class="hover:text-blue-600">AI Tools</a>
+                    <a href="#" class="hover:text-blue-600">OCR</a>
+                    <button class="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition">Get Pro Access</button>
                 </div>
+            </div>
+        </div>
+    </nav>
 
-                <!-- Conversion Settings -->
-                <div class="glass-panel p-6">
-                    <h3 class="text-lg font-semibold mb-6 flex items-center gap-2">
-                        <span class="text-cyan-400">⚙️</span> Output Settings
-                    </h3>
-                    <div class="space-y-4">
-                        <label class="block">
-                            <span class="text-xs text-gray-400">Convert To:</span>
-                            <select id="targetFormat" class="w-full bg-white/5 border border-white/10 rounded-xl p-3 mt-2 outline-none focus:border-cyan-500">
-                                <option value="docx">Microsoft Word (.docx)</option>
-                                <option value="xlsx">Microsoft Excel (.xlsx)</option>
-                                <option value="pptx">PowerPoint (.pptx)</option>
-                                <option value="pdf">Portable Document (.pdf)</option>
-                            </select>
-                        </label>
-                        <div class="flex items-center gap-3 p-3 bg-white/5 rounded-xl border border-white/5">
-                            <input type="checkbox" checked class="accent-cyan-500">
-                            <span class="text-xs">AI OCR Recognition</span>
-                        </div>
-                        <div class="flex items-center gap-3 p-3 bg-white/5 rounded-xl border border-white/5">
-                            <input type="checkbox" checked class="accent-cyan-500">
-                            <span class="text-xs">Preserve Formatting</span>
-                        </div>
+    <!-- Hero Section -->
+    <header class="gradient-bg py-16 text-white px-4">
+        <div class="max-w-5xl mx-auto text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6 italic">Pro Edition: Ultimate Office Converter</h1>
+            <p class="text-xl opacity-90 mb-10 max-w-2xl mx-auto">
+                Unrestricted access to over 30 PDF tools, featuring advanced editing, OCR, and AI-powered document intelligence.
+            </p>
+            
+            <!-- Upload Area -->
+            <div id="dropZone" class="bg-white p-10 rounded-2xl shadow-2xl text-gray-800 max-w-3xl mx-auto drop-zone">
+                <input type="file" id="fileInput" class="hidden" multiple>
+                <div class="flex flex-col items-center cursor-pointer" onclick="document.getElementById('fileInput').click()">
+                    <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-cloud-upload-alt text-3xl text-blue-600"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-2">Pilih File atau Drag & Drop</h3>
+                    <p class="text-gray-500 mb-6 text-sm italic">Mendukung Word, Excel, PPT, PDF, dan Gambar (Batch Processing Aktif)</p>
+                    <div class="flex space-x-2">
+                        <span class="bg-gray-100 px-3 py-1 rounded text-xs">DOCX</span>
+                        <span class="bg-gray-100 px-3 py-1 rounded text-xs">XLSX</span>
+                        <span class="bg-gray-100 px-3 py-1 rounded text-xs">PPTX</span>
+                        <span class="bg-gray-100 px-3 py-1 rounded text-xs">PDF</span>
+                    </div>
+                </div>
+                
+                <!-- Progress Bar (Hidden by default) -->
+                <div id="progressArea" class="hidden mt-8 text-left">
+                    <div class="flex justify-between mb-2">
+                        <span class="text-sm font-medium" id="fileName">Processing Document...</span>
+                        <span class="text-sm font-medium" id="percent">0%</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2.5">
+                        <div id="progressBar" class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
                     </div>
                 </div>
             </div>
+        </div>
+    </header>
 
-            <!-- Processing Queue -->
-            <div class="glass-panel p-6 hidden" id="processingCard">
-                <h3 class="text-sm font-bold text-gray-400 uppercase mb-4">Active Processing</h3>
-                <div id="fileList" class="space-y-4">
-                    <!-- Dynamic File Items -->
+    <!-- Main Features Grid -->
+    <main class="max-w-7xl mx-auto py-20 px-4">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">Fitur Pro Tanpa Batas</h2>
+            <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Feature 1: Advanced Editing & OCR -->
+            <div class="pro-card bg-white p-8 rounded-xl shadow-md border border-gray-100">
+                <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-6">
+                    <i class="fas fa-file-signature text-purple-600 text-xl"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3">Advanced Editing & OCR</h3>
+                <p class="text-gray-600">Ubah hasil scan menjadi dokumen yang bisa diedit (Word/Excel) secara instan dengan akurasi 99%.</p>
+            </div>
+
+            <!-- Feature 2: AI Powered Tools -->
+            <div class="pro-card bg-white p-8 rounded-xl shadow-md border border-gray-100">
+                <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-6">
+                    <i class="fas fa-robot text-green-600 text-xl"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3">AI-Powered Tools</h3>
+                <p class="text-gray-600">Gunakan AI untuk merangkum, menerjemahkan, dan bertanya jawab langsung dengan dokumen Anda.</p>
+            </div>
+
+            <!-- Feature 3: Unlimited Everything -->
+            <div class="pro-card bg-white p-8 rounded-xl shadow-md border border-gray-100">
+                <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-6">
+                    <i class="fas fa-infinity text-red-600 text-xl"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3">Unlimited Everything</h3>
+                <p class="text-gray-600">Tanpa batasan ukuran file, tanpa limit konversi harian, dan download tanpa antre.</p>
+            </div>
+
+            <!-- Feature 4: Batch Processing -->
+            <div class="pro-card bg-white p-8 rounded-xl shadow-md border border-gray-100">
+                <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mb-6">
+                    <i class="fas fa-layer-group text-yellow-600 text-xl"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3">Batch Processing</h3>
+                <p class="text-gray-600">Konversi hingga 100 file sekaligus. Hemat waktu kerja manual Anda hingga 80%.</p>
+            </div>
+
+            <!-- Feature 5: Offline Desktop Access -->
+            <div class="pro-card bg-white p-8 rounded-xl shadow-md border border-gray-100">
+                <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
+                    <i class="fas fa-desktop text-blue-600 text-xl"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3">Offline Desktop Access</h3>
+                <p class="text-gray-600">Gunakan aplikasi desktop tanpa koneksi internet. Keamanan data maksimal di perangkat Anda.</p>
+            </div>
+
+            <!-- Feature 6: Cloud Storage -->
+            <div class="pro-card bg-white p-8 rounded-xl shadow-md border border-gray-100">
+                <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-6">
+                    <i class="fas fa-cloud text-indigo-600 text-xl"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3">Cloud & Sharing</h3>
+                <p class="text-gray-600">Penyimpanan cloud tak terbatas. Bagikan dokumen via link aman dengan proteksi password.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- AI Feature Mockup Section -->
+    <section class="bg-gray-900 py-20 text-white">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-10 md:mb-0">
+                <span class="text-blue-400 font-bold tracking-widest uppercase text-sm">Next-Gen Technology</span>
+                <h2 class="text-4xl font-bold mt-4 mb-6">Chat with your PDF using AI</h2>
+                <p class="text-gray-400 text-lg mb-8">Tanyakan apa pun tentang isi dokumen Anda. AI kami akan menganalisis ribuan halaman dalam detik untuk memberikan jawaban akurat.</p>
+                <ul class="space-y-4">
+                    <li class="flex items-center"><i class="fas fa-check-circle text-blue-500 mr-3"></i> Summarize long reports</li>
+                    <li class="flex items-center"><i class="fas fa-check-circle text-blue-500 mr-3"></i> Translate to 50+ languages</li>
+                    <li class="flex items-center"><i class="fas fa-check-circle text-blue-500 mr-3"></i> Extract key data points automatically</li>
+                </ul>
+            </div>
+            <div class="md:w-1/2 bg-gray-800 p-6 rounded-2xl shadow-2xl border border-gray-700 ml-0 md:ml-12">
+                <div class="flex items-center space-x-2 mb-4 border-b border-gray-700 pb-4">
+                    <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                    <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                    <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                    <span class="ml-4 text-xs text-gray-500">AI Assistant Interface</span>
+                </div>
+                <div class="space-y-4">
+                    <div class="bg-gray-700 p-3 rounded-lg w-3/4">Tolong rangkum poin utama dari laporan pajak ini.</div>
+                    <div class="bg-blue-600 p-3 rounded-lg w-3/4 ml-auto text-right italic font-light">"Berdasarkan dokumen, poin utamanya adalah: 1. Pendapatan naik 20%, 2. Beban operasional berkurang..."</div>
+                    <div class="bg-gray-700 p-3 rounded-lg w-2/4">Siapa penandatangan kontrak ini?</div>
+                    <div class="bg-blue-600 p-3 rounded-lg w-3/4 ml-auto text-right font-light italic">"Penandatangan adalah Direktur Utama, Bpk. Ahmad (Halaman 42)."</div>
                 </div>
             </div>
         </div>
+    </section>
 
-        <!-- Section 2: System Health (Previously built) -->
-        <div id="tab-system" class="hidden grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="glass-panel p-6 col-span-1 md:col-span-2">
-                <canvas id="sysChart" height="200"></canvas>
+    <!-- Footer -->
+    <footer class="bg-white border-t py-12 px-4">
+        <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div>
+                <h4 class="font-bold mb-4">Product</h4>
+                <ul class="text-gray-600 space-y-2 text-sm">
+                    <li><a href="#">PDF to Word</a></li>
+                    <li><a href="#">Excel to PDF</a></li>
+                    <li><a href="#">OCR Scanner</a></li>
+                    <li><a href="#">AI Summarizer</a></li>
+                </ul>
             </div>
-            <div class="glass-panel p-6 flex flex-col items-center justify-center">
-                <div class="text-4xl mb-2">🔋</div>
-                <div class="text-2xl font-bold">88%</div>
-                <p class="text-xs text-gray-400">Stable Power</p>
+            <div>
+                <h4 class="font-bold mb-4">Company</h4>
+                <ul class="text-gray-600 space-y-2 text-sm">
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Security</a></li>
+                    <li><a href="#">Enterprise</a></li>
+                </ul>
             </div>
-        </div>
-
-        <!-- Section 3: Network (Previously built) -->
-        <div id="tab-network" class="hidden glass-panel p-10 text-center">
-            <h2 class="text-2xl mb-4">Network Diagnostics</h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div class="p-4 bg-white/5 rounded-2xl">
-                    <p class="text-xs text-gray-400">Ping</p>
-                    <p class="text-xl font-bold text-cyan-400">12ms</p>
+            <div>
+                <h4 class="font-bold mb-4">Support</h4>
+                <ul class="text-gray-600 space-y-2 text-sm">
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">API Docs</a></li>
+                    <li><a href="#">Contact Support</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold mb-4">Social</h4>
+                <div class="flex space-x-4 text-gray-400">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
                 </div>
-                <!-- ... other network stats ... -->
             </div>
         </div>
-    </div>
+        <div class="max-w-7xl mx-auto mt-12 pt-8 border-t text-center text-gray-500 text-sm">
+            &copy; 2023 DocuMaster Pro Edition. All Rights Reserved.
+        </div>
+    </footer>
 
     <script>
-        // --- Navigation Logic ---
-        function switchTab(tab) {
-            ['converter', 'system', 'network'].forEach(t => {
-                document.getElementById(`tab-${t}`).classList.add('hidden');
-                document.getElementById(`btn-${t}`).classList.remove('active');
-            });
-            document.getElementById(`tab-${tab}`).classList.remove('hidden');
-            document.getElementById(`btn-${tab}`).classList.add('active');
-        }
-
-        // --- Document Converter Logic ---
         const dropZone = document.getElementById('dropZone');
-        
+        const fileInput = document.getElementById('fileInput');
+        const progressArea = document.getElementById('progressArea');
+        const progressBar = document.getElementById('progressBar');
+        const percentText = document.getElementById('percent');
+
+        // Drag and Drop simulation
         ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-            dropZone.addEventListener(eventName, e => {
-                e.preventDefault();
-                e.stopPropagation();
-            }, false);
+            dropZone.addEventListener(eventName, preventDefaults, false);
         });
 
-        dropZone.addEventListener('drop', e => {
-            handleFiles(e.dataTransfer.files);
+        function preventDefaults(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+
+        ['dragenter', 'dragover'].forEach(eventName => {
+            dropZone.addEventListener(eventName, () => dropZone.classList.add('active'), false);
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+            dropZone.addEventListener(eventName, () => dropZone.classList.remove('active'), false);
+        });
+
+        dropZone.addEventListener('drop', handleDrop, false);
+
+        function handleDrop(e) {
+            const dt = e.dataTransfer;
+            const files = dt.files;
+            handleFiles(files);
+        }
+
+        fileInput.addEventListener('change', function() {
+            handleFiles(this.files);
         });
 
         function handleFiles(files) {
-            if(files.length === 0) return;
-            document.getElementById('processingCard').classList.remove('hidden');
-            const fileList = document.getElementById('fileList');
-            
-            Array.from(files).forEach(file => {
-                const fileId = 'file-' + Math.random().toString(36).substr(2, 9);
-                const targetFormat = document.getElementById('targetFormat').value;
-                
-                const html = `
-                    <div id="${fileId}" class="flex flex-col p-4 bg-white/5 rounded-2xl border border-white/10 active-process">
-                        <div class="flex justify-between items-center mb-2">
-                            <div class="flex items-center gap-3">
-                                <span class="text-2xl">📄</span>
-                                <div>
-                                    <p class="text-sm font-semibold">${file.name}</p>
-                                    <p class="text-[10px] text-gray-500">${(file.size/1024).toFixed(1)} KB • Preparing...</p>
-                                </div>
-                            </div>
-                            <div id="status-${fileId}" class="text-xs font-bold text-cyan-400">0%</div>
-                        </div>
-                        <div class="progress-container">
-                            <div id="bar-${fileId}" class="progress-bar"></div>
-                        </div>
-                        <div id="download-${fileId}" class="hidden mt-3 flex justify-end">
-                            <button onclick="downloadSimulatedFile('${file.name}', '${targetFormat}')" class="text-[10px] bg-green-500/20 text-green-400 border border-green-500/50 px-3 py-1 rounded-lg hover:bg-green-500 hover:text-black transition-all">
-                                ⬇️ Download Converted .${targetFormat}
-                            </button>
-                        </div>
-                    </div>
-                `;
-                fileList.innerHTML = html + fileList.innerHTML;
-                simulateConversion(fileId);
-            });
+            if (files.length > 0) {
+                progressArea.classList.remove('hidden');
+                simulateProgress();
+            }
         }
 
-        function simulateConversion(id) {
-            let progress = 0;
-            const bar = document.getElementById(`bar-${id}`);
-            const status = document.getElementById(`status-${id}`);
-            const card = document.getElementById(id);
-            
+        function simulateProgress() {
+            let width = 0;
             const interval = setInterval(() => {
-                progress += Math.random() * 15;
-                if(progress >= 100) {
-                    progress = 100;
+                if (width >= 100) {
                     clearInterval(interval);
-                    finalizeConversion(id);
+                    alert('Pro Edition Success: Dokumen berhasil diproses menggunakan OCR & AI.');
+                    progressArea.classList.add('hidden');
+                    width = 0;
+                    progressBar.style.width = '0%';
+                } else {
+                    width++;
+                    progressBar.style.width = width + '%';
+                    percentText.innerText = width + '%';
                 }
-                bar.style.width = progress + '%';
-                status.innerText = Math.floor(progress) + '%';
-            }, 400);
+            }, 30);
         }
-
-        function finalizeConversion(id) {
-            document.getElementById(`status-${id}`).innerText = "COMPLETED";
-            document.getElementById(`status-${id}`).classList.replace('text-cyan-400', 'text-green-400');
-            document.getElementById(`download-${id}`).classList.remove('hidden');
-            document.getElementById(id).classList.remove('active-process');
-        }
-
-        function downloadSimulatedFile(originalName, format) {
-            const baseName = originalName.split('.').slice(0, -1).join('.');
-            const newName = `${baseName}_converted.${format}`;
-            
-            // Create dummy blob
-            const blob = new Blob(["Simulated converted content for " + originalName], { type: "text/plain" });
-            const url = window.URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = newName;
-            document.body.appendChild(a);
-            a.click();
-            window.URL.revokeObjectURL(url);
-        }
-
-        // --- System Chart (Basic) ---
-        const ctx = document.getElementById('sysChart').getContext('2d');
-        new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: ['1', '2', '3', '4', '5'],
-                datasets: [{
-                    label: 'System Load',
-                    data: [12, 19, 3, 5, 2],
-                    borderColor: '#00f2ff',
-                    tension: 0.4
-                }]
-            },
-            options: { responsive: true, plugins: { legend: { display: false } } }
-        });
     </script>
 </body>
 </html>
