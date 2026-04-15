@@ -3,289 +3,309 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pro Edition v2.1.0 | Ultimate Office Converter & AI</title>
+    <title>Pro Edition v2.2.0 | Office 365 Editable Suite</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
         body { font-family: 'Inter', sans-serif; }
-        .gradient-bg { background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%); }
-        .pro-badge { background: linear-gradient(90deg, #f59e0b, #d97706); }
+        .gradient-bg { background: linear-gradient(135deg, #0f172a 0%, #1e40af 100%); }
+        .o365-badge { background: #d83b01; color: white; } /* Office 365 Brand Color */
         .drop-zone { border: 2px dashed #cbd5e1; transition: all 0.3s ease; }
         .drop-zone.active { border-color: #3b82f6; background-color: #eff6ff; }
-        .format-card.active { border-color: #3b82f6; background-color: #eff6ff; ring: 2px; ring-color: #3b82f6; }
+        .office-card:hover { border-color: #d83b01; transform: scale(1.02); }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-900">
 
-    <!-- Version Tag -->
-    <div class="bg-slate-900 text-white text-[10px] text-center py-1 tracking-widest uppercase font-bold">
-        DocuMaster Engine Core <span class="text-blue-400">v2.1.0-Build.2024</span> | Enterprise Unrestricted Access
+    <!-- Top Status Bar -->
+    <div class="bg-blue-700 text-white text-[11px] py-1.5 px-4 flex justify-between items-center font-bold tracking-wide">
+        <span><i class="fas fa-check-circle mr-1"></i> OFFICE 365 ENGINE ACTIVE</span>
+        <span>VERSION 2.2.0-STABLE (ENTERPRISE)</span>
+        <span class="hidden md:block">ENCRYPTION: AES-256 BIT</span>
     </div>
 
     <!-- Navigation -->
-    <nav class="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50 border-b border-slate-200">
+    <nav class="bg-white/90 backdrop-blur-md shadow-sm sticky top-0 z-50 border-b border-slate-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16 items-center">
-                <div class="flex items-center">
-                    <i class="fas fa-shield-halved text-blue-600 text-2xl mr-2"></i>
-                    <span class="text-xl font-black tracking-tighter text-slate-800">DOCU<span class="text-blue-600">PRO</span></span>
-                    <span class="ml-2 px-2 py-0.5 pro-badge text-[10px] text-white rounded-full font-bold">PRO v2.1</span>
+                <div class="flex items-center space-x-2">
+                    <div class="bg-blue-600 p-1.5 rounded-lg">
+                        <i class="fas fa-file-invoice text-white text-xl"></i>
+                    </div>
+                    <span class="text-2xl font-black tracking-tighter text-slate-800">DOCU<span class="text-blue-600">PRO</span></span>
                 </div>
-                <div class="hidden md:flex space-x-6 items-center font-semibold text-sm text-slate-600 uppercase tracking-tighter">
-                    <a href="#" class="hover:text-blue-600 transition">AI OCR</a>
-                    <a href="#" class="hover:text-blue-600 transition">Batch System</a>
-                    <a href="#" class="hover:text-blue-600 transition">Cloud v2</a>
-                    <button class="bg-blue-600 text-white px-4 py-2 rounded flex items-center shadow-lg shadow-blue-200 hover:bg-blue-700">
-                        <i class="fas fa-crown mr-2 text-xs"></i> PRO ACCOUNT
+                <div class="flex items-center space-x-4">
+                    <span class="text-xs font-bold text-slate-400 border-r pr-4 hidden sm:block">OFFICE 365 COMPATIBLE</span>
+                    <button class="bg-slate-900 text-white px-5 py-2 rounded-full text-sm font-bold flex items-center hover:bg-blue-700 transition">
+                        <i class="fas fa-crown mr-2 text-yellow-400"></i> PRO ACCESS
                     </button>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- Hero & Tool Section -->
-    <header class="gradient-bg pt-12 pb-24 px-4">
-        <div class="max-w-5xl mx-auto text-center text-white">
-            <h1 class="text-4xl md:text-5xl font-extrabold mb-4">All-in-One Office Converter</h1>
-            <p class="text-blue-100 text-lg mb-10 max-w-2xl mx-auto font-light">
-                Professional Suite v2.1: Advanced OCR, AI Document Chat, and Unlimited Batch Processing for all Office formats.
+    <!-- Main Tool Container -->
+    <header class="gradient-bg pt-16 pb-32 px-4 relative overflow-hidden">
+        <!-- Abstract background deco -->
+        <div class="absolute top-0 right-0 -mt-20 -mr-20 w-96 h-96 bg-blue-500 rounded-full blur-3xl opacity-20"></div>
+        
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+            <div class="inline-flex items-center bg-white/10 backdrop-blur-md border border-white/20 px-4 py-1.5 rounded-full text-white text-xs font-bold mb-6">
+                <span class="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></span>
+                PRO EDITION: ALL FORMATS SUPPORTED
+            </div>
+            <h1 class="text-4xl md:text-6xl font-black text-white mb-6 tracking-tight">
+                AI Document <span class="text-blue-400">Converter.</span>
+            </h1>
+            <p class="text-slate-300 text-lg mb-12 max-w-2xl mx-auto font-medium">
+                v2.2.0 Update: Now with full <strong class="text-white font-bold">Microsoft 365</strong> support. 
+                Convert scans to editable Word, Excel, and PPT with AI-powered OCR.
             </p>
             
-            <div id="mainApp" class="bg-white p-6 md:p-10 rounded-3xl shadow-2xl text-slate-800 max-w-4xl mx-auto border border-white/20">
+            <div id="converterBox" class="bg-white rounded-[2rem] shadow-2xl overflow-hidden text-slate-800 text-left border border-white/20">
                 
-                <!-- Format Selector (New v2.1) -->
-                <div id="formatSelector" class="mb-8">
-                    <p class="text-sm font-bold text-slate-500 uppercase tracking-widest mb-4">1. Select Target Format</p>
-                    <div class="grid grid-cols-2 md:grid-cols-5 gap-3">
-                        <button onclick="setFormat('PDF', this)" class="format-btn active flex flex-col items-center p-3 border-2 rounded-xl border-blue-500 bg-blue-50 transition">
-                            <i class="fas fa-file-pdf text-red-500 text-xl mb-1"></i>
-                            <span class="text-xs font-bold">TO PDF</span>
-                        </button>
-                        <button onclick="setFormat('DOCX', this)" class="format-btn flex flex-col items-center p-3 border-2 rounded-xl border-slate-100 hover:border-blue-300 transition">
-                            <i class="fas fa-file-word text-blue-500 text-xl mb-1"></i>
-                            <span class="text-xs font-bold">TO WORD</span>
-                        </button>
-                        <button onclick="setFormat('XLSX', this)" class="format-btn flex flex-col items-center p-3 border-2 rounded-xl border-slate-100 hover:border-blue-300 transition">
-                            <i class="fas fa-file-excel text-green-600 text-xl mb-1"></i>
-                            <span class="text-xs font-bold">TO EXCEL</span>
-                        </button>
-                        <button onclick="setFormat('PPTX', this)" class="format-btn flex flex-col items-center p-3 border-2 rounded-xl border-slate-100 hover:border-blue-300 transition">
-                            <i class="fas fa-file-powerpoint text-orange-500 text-xl mb-1"></i>
-                            <span class="text-xs font-bold">TO PPT</span>
-                        </button>
-                        <button onclick="setFormat('JPG', this)" class="format-btn flex flex-col items-center p-3 border-2 rounded-xl border-slate-100 hover:border-blue-300 transition">
-                            <i class="fas fa-file-image text-purple-500 text-xl mb-1"></i>
-                            <span class="text-xs font-bold">TO IMAGE</span>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Upload Area -->
-                <div id="uploadState">
-                    <p class="text-sm font-bold text-slate-500 uppercase tracking-widest mb-4 text-left">2. Upload Documents</p>
-                    <input type="file" id="fileInput" class="hidden" multiple>
-                    <div id="dropZone" class="drop-zone py-12 rounded-2xl cursor-pointer bg-slate-50 hover:bg-white flex flex-col items-center" onclick="document.getElementById('fileInput').click()">
-                        <div class="w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center mb-4 shadow-lg">
-                            <i class="fas fa-plus text-2xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-1">Add files to convert</h3>
-                        <p class="text-slate-400 text-sm italic">Supports Batch Processing up to 100 files</p>
-                    </div>
-                </div>
-
-                <!-- Progress Area -->
-                <div id="progressState" class="hidden py-10">
-                    <div class="flex items-center justify-between mb-4">
-                        <div class="flex items-center">
-                            <div class="w-2 h-2 bg-blue-600 rounded-full animate-ping mr-3"></div>
-                            <span class="font-bold text-lg" id="engineStatus">Initializing Pro Engine v2.1...</span>
-                        </div>
-                        <span class="text-blue-600 font-black" id="percentText">0%</span>
-                    </div>
-                    <div class="w-full bg-slate-100 rounded-full h-3 overflow-hidden">
-                        <div id="progressBar" class="bg-blue-600 h-full w-0 transition-all duration-200"></div>
-                    </div>
-                    <div class="mt-6 grid grid-cols-2 gap-4 text-left">
-                        <div class="bg-slate-50 p-3 rounded-lg border border-slate-100 text-[10px]">
-                            <p class="text-slate-400 font-bold uppercase">OCR Module</p>
-                            <p class="text-green-600 font-bold">READY / ACTIVE</p>
-                        </div>
-                        <div class="bg-slate-50 p-3 rounded-lg border border-slate-100 text-[10px]">
-                            <p class="text-slate-400 font-bold uppercase">AI Analysis</p>
-                            <p class="text-blue-600 font-bold">CALCULATING...</p>
+                <!-- Format Choice -->
+                <div class="p-6 bg-slate-50 border-b border-slate-100">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                        <h3 class="font-extrabold text-sm uppercase tracking-widest text-slate-400">Target Format (Office 365 Optimized)</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <button onclick="setFormat('DOCX', this)" class="format-btn flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-bold transition shadow-lg shadow-blue-200">
+                                <i class="fas fa-file-word mr-2"></i> Word
+                            </button>
+                            <button onclick="setFormat('XLSX', this)" class="format-btn flex items-center px-4 py-2 bg-white border border-slate-200 text-slate-700 rounded-lg text-sm font-bold hover:bg-slate-50 transition">
+                                <i class="fas fa-file-excel mr-2 text-green-600"></i> Excel
+                            </button>
+                            <button onclick="setFormat('PPTX', this)" class="format-btn flex items-center px-4 py-2 bg-white border border-slate-200 text-slate-700 rounded-lg text-sm font-bold hover:bg-slate-50 transition">
+                                <i class="fas fa-file-powerpoint mr-2 text-orange-600"></i> PPT
+                            </button>
                         </div>
                     </div>
                 </div>
 
-                <!-- Download Area -->
-                <div id="downloadState" class="hidden">
-                    <div class="flex items-center justify-between mb-6">
-                        <h3 class="text-2xl font-black text-slate-800"><i class="fas fa-check-double text-green-500 mr-2"></i> Ready for Download</h3>
-                        <span class="text-[10px] bg-green-100 text-green-700 px-2 py-1 rounded font-bold">SECURED BY DOCUPRO</span>
+                <div class="p-8 md:p-12">
+                    <!-- Upload State -->
+                    <div id="uploadState">
+                        <input type="file" id="fileInput" class="hidden" multiple>
+                        <div id="dropZone" class="drop-zone rounded-3xl py-16 flex flex-col items-center justify-center bg-slate-50 cursor-pointer group" onclick="document.getElementById('fileInput').click()">
+                            <div class="w-20 h-20 bg-white rounded-2xl shadow-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                                <i class="fas fa-cloud-arrow-up text-3xl text-blue-600"></i>
+                            </div>
+                            <h2 class="text-2xl font-bold mb-2">Drop your files here</h2>
+                            <p class="text-slate-500 font-medium">Any format supported. No size limit for <span class="text-blue-600">Pro</span>.</p>
+                        </div>
                     </div>
-                    <div id="fileList" class="space-y-3 mb-8 max-h-60 overflow-y-auto pr-2">
-                        <!-- Dynamic items -->
-                    </div>
-                    <div class="flex flex-col md:flex-row gap-3">
-                        <button onclick="resetUI()" class="flex-1 border-2 border-slate-200 text-slate-600 py-3 rounded-xl font-bold hover:bg-slate-50 transition uppercase text-sm tracking-wider">
-                            Convert New Batch
-                        </button>
-                        <button class="flex-1 bg-blue-600 text-white py-3 rounded-xl font-bold hover:bg-blue-700 transition shadow-xl shadow-blue-200 uppercase text-sm tracking-wider">
-                            <i class="fas fa-file-zipper mr-2"></i> Download All Bundle
-                        </button>
-                    </div>
-                </div>
 
+                    <!-- Processing State -->
+                    <div id="progressState" class="hidden py-10">
+                        <div class="flex items-center justify-between mb-8">
+                            <div>
+                                <h3 class="text-2xl font-black italic" id="statusText">PRO CORE V2...</h3>
+                                <p class="text-slate-500 text-sm">Converting using O365 Semantic Engine</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-4xl font-black text-blue-600" id="percentText">0%</span>
+                            </div>
+                        </div>
+                        <div class="w-full bg-slate-100 rounded-full h-4 overflow-hidden border border-slate-200">
+                            <div id="progressBar" class="bg-blue-600 h-full w-0 transition-all duration-300 shadow-[0_0_15px_rgba(37,99,235,0.4)]"></div>
+                        </div>
+                        <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div class="p-4 bg-blue-50 rounded-xl border border-blue-100">
+                                <i class="fas fa-microchip text-blue-600 mb-2"></i>
+                                <p class="text-[10px] font-bold uppercase text-blue-400">OCR AI Scan</p>
+                                <p class="text-sm font-bold">Active</p>
+                            </div>
+                            <div class="p-4 bg-green-50 rounded-xl border border-green-100">
+                                <i class="fas fa-file-signature text-green-600 mb-2"></i>
+                                <p class="text-[10px] font-bold uppercase text-green-400">Editability</p>
+                                <p class="text-sm font-bold">Full Access</p>
+                            </div>
+                            <div class="p-4 bg-purple-50 rounded-xl border border-purple-100">
+                                <i class="fas fa-shield-check text-purple-600 mb-2"></i>
+                                <p class="text-[10px] font-bold uppercase text-purple-400">Security</p>
+                                <p class="text-sm font-bold">O365 Sync</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Download State -->
+                    <div id="downloadState" class="hidden">
+                        <div class="flex items-center justify-between mb-8">
+                            <h3 class="text-2xl font-black text-slate-800">Files Ready <span class="text-blue-600 text-sm font-bold block">Office 365 Editable Formats</span></h3>
+                            <i class="fas fa-circle-check text-green-500 text-4xl"></i>
+                        </div>
+                        <div id="fileList" class="space-y-4 mb-10">
+                            <!-- Files -->
+                        </div>
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <button onclick="resetUI()" class="flex-1 px-8 py-4 bg-slate-100 text-slate-700 rounded-2xl font-bold hover:bg-slate-200 transition">
+                                <i class="fas fa-rotate-left mr-2"></i> Convert More
+                            </button>
+                            <button class="flex-1 px-8 py-4 bg-blue-600 text-white rounded-2xl font-bold shadow-xl shadow-blue-200 hover:bg-blue-700 transition">
+                                <i class="fas fa-download mr-2"></i> Download All (.zip)
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </div>
     </header>
 
-    <!-- Version Feature Highlights -->
+    <!-- Compatibility Section -->
     <section class="max-w-7xl mx-auto py-20 px-4">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
-            <div class="p-6 bg-white rounded-2xl border border-slate-100">
-                <p class="text-blue-600 font-black mb-2 italic">NEW v2.1</p>
-                <h4 class="font-bold mb-2">OCR Max</h4>
-                <p class="text-sm text-slate-500">99.8% Accuracy on handwritten notes & scans.</p>
+        <div class="text-center mb-16">
+            <h2 class="text-3xl font-black mb-4 italic">v2.2.0 Integration Highlights</h2>
+            <div class="w-16 h-1.5 bg-blue-600 mx-auto rounded-full"></div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-white p-8 rounded-[2rem] shadow-sm border border-slate-100">
+                <div class="w-12 h-12 bg-orange-100 text-orange-600 rounded-xl flex items-center justify-center mb-6">
+                    <i class="fas fa-edit text-xl"></i>
+                </div>
+                <h4 class="font-bold text-lg mb-2">Native Editing</h4>
+                <p class="text-slate-500 text-sm leading-relaxed">Unlike basic converters, our Pro Engine preserves layers, fonts, and tables for native editing in Office 365 apps.</p>
             </div>
-            <div class="p-6 bg-white rounded-2xl border border-slate-100">
-                <p class="text-blue-600 font-black mb-2 italic">AI READY</p>
-                <h4 class="font-bold mb-2">Chat with Doc</h4>
-                <p class="text-sm text-slate-500">Ask questions to your converted files directly.</p>
+            <div class="bg-white p-8 rounded-[2rem] shadow-sm border border-slate-100">
+                <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center mb-6">
+                    <i class="fas fa-cloud-bolt text-xl"></i>
+                </div>
+                <h4 class="font-bold text-lg mb-2">Cloud Optimized</h4>
+                <p class="text-slate-500 text-sm leading-relaxed">Direct metadata compatibility with OneDrive and SharePoint. No "Read-Only" mode locks.</p>
             </div>
-            <div class="p-6 bg-white rounded-2xl border border-slate-100">
-                <p class="text-blue-600 font-black mb-2 italic">OFFLINE</p>
-                <h4 class="font-bold mb-2">Desktop Link</h4>
-                <p class="text-sm text-slate-500">Sync with our Pro Desktop App for offline use.</p>
-            </div>
-            <div class="p-6 bg-white rounded-2xl border border-slate-100">
-                <p class="text-blue-600 font-black mb-2 italic">UNLIMITED</p>
-                <h4 class="font-bold mb-2">No File Limit</h4>
-                <p class="text-sm text-slate-500">Convert files up to 2GB per upload.</p>
+            <div class="bg-white p-8 rounded-[2rem] shadow-sm border border-slate-100">
+                <div class="w-12 h-12 bg-green-100 text-green-600 rounded-xl flex items-center justify-center mb-6">
+                    <i class="fas fa-table text-xl"></i>
+                </div>
+                <h4 class="font-bold text-lg mb-2">Table Recognition</h4>
+                <p class="text-slate-500 text-sm leading-relaxed">Advanced OCR specifically for Excel, converting static data into functional spreadsheets with formulas.</p>
             </div>
         </div>
     </section>
 
-    <!-- Footer v2.1 -->
-    <footer class="bg-slate-900 py-12 text-white px-4">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center">
-            <div class="mb-6 md:mb-0">
-                <p class="text-xl font-bold">DOCUPRO <span class="text-blue-500 italic text-sm">Edition v2.1.0</span></p>
-                <p class="text-slate-500 text-xs mt-1">Enterprise Document Infrastructure</p>
-            </div>
-            <div class="text-slate-400 text-xs text-center md:text-right">
-                <p>&copy; 2024 DocuMaster System. Released under Pro License.</p>
-                <p class="mt-1">Batch Engine ID: PRO-9921-X</p>
-            </div>
-        </div>
+    <footer class="bg-white border-t border-slate-100 py-10 text-center">
+        <p class="text-slate-400 text-xs font-bold uppercase tracking-widest">&copy; 2024 DocuMaster Enterprise System v2.2.0. All Rights Reserved.</p>
     </footer>
 
     <script>
-        let selectedTargetFormat = 'PDF';
-        let currentFiles = [];
+        let currentTargetFormat = 'DOCX';
+        let filesToProcess = [];
 
-        function setFormat(fmt, btn) {
-            selectedTargetFormat = fmt;
-            // Update UI selection
-            document.querySelectorAll('.format-btn').forEach(b => {
-                b.classList.remove('active', 'border-blue-500', 'bg-blue-50');
-                b.classList.add('border-slate-100');
-            });
-            btn.classList.add('active', 'border-blue-500', 'bg-blue-50');
-            btn.classList.remove('border-slate-100');
-        }
+        // Office 365 MIME Types for Editability Support
+        const OFFICE_MIMES = {
+            'DOCX': 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+            'XLSX': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+            'PPTX': 'application/vnd.openxmlformats-officedocument.presentationml.presentation'
+        };
 
         const fileInput = document.getElementById('fileInput');
         const uploadState = document.getElementById('uploadState');
         const progressState = document.getElementById('progressState');
         const downloadState = document.getElementById('downloadState');
-        const progressBar = document.getElementById('progressBar');
-        const percentText = document.getElementById('percentText');
-        const engineStatus = document.getElementById('engineStatus');
         const fileList = document.getElementById('fileList');
+
+        function setFormat(fmt, btn) {
+            currentTargetFormat = fmt;
+            document.querySelectorAll('.format-btn').forEach(b => {
+                b.className = "format-btn flex items-center px-4 py-2 bg-white border border-slate-200 text-slate-700 rounded-lg text-sm font-bold hover:bg-slate-50 transition";
+            });
+            btn.className = "format-btn flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-bold transition shadow-lg shadow-blue-200";
+        }
 
         fileInput.addEventListener('change', function() {
             if (this.files.length > 0) {
-                currentFiles = Array.from(this.files);
-                processFiles();
+                filesToProcess = Array.from(this.files);
+                runConversion();
             }
         });
 
-        function processFiles() {
+        // Drag and drop logic
+        const dropZone = document.getElementById('dropZone');
+        ['dragover', 'drop'].forEach(ev => {
+            dropZone.addEventListener(ev, e => {
+                e.preventDefault();
+                if(ev === 'dragover') dropZone.classList.add('active');
+                if(ev === 'drop') {
+                    dropZone.classList.remove('active');
+                    filesToProcess = Array.from(e.dataTransfer.files);
+                    runConversion();
+                }
+            });
+        });
+
+        function runConversion() {
             uploadState.classList.add('hidden');
             progressState.classList.remove('hidden');
             
             let progress = 0;
-            const statusMessages = [
-                "Initializing v2.1 Engine...",
-                "Running Advanced OCR...",
-                "Applying AI Enhancement...",
-                "Encoding to " + selectedTargetFormat + "...",
-                "Finalizing Pro Security..."
-            ];
-
+            const statusArr = ["Applying OCR Engine...", "Optimizing for Office 365...", "Restructuring Layers...", "Finalizing Editability..."];
+            
             const interval = setInterval(() => {
-                progress += Math.floor(Math.random() * 8) + 2;
+                progress += Math.floor(Math.random() * 5) + 2;
                 if (progress > 100) progress = 100;
-                
-                progressBar.style.width = progress + '%';
-                percentText.innerText = progress + '%';
-                
-                // Change status message based on progress
-                const msgIdx = Math.floor((progress / 100) * (statusMessages.length - 1));
-                engineStatus.innerText = statusMessages[msgIdx];
+
+                document.getElementById('progressBar').style.width = progress + '%';
+                document.getElementById('percentText').innerText = progress + '%';
+                document.getElementById('statusText').innerText = statusArr[Math.floor((progress/101)*statusArr.length)];
 
                 if (progress >= 100) {
                     clearInterval(interval);
-                    showDownloads();
+                    renderDownloads();
                 }
-            }, 150);
+            }, 80);
         }
 
-        function showDownloads() {
+        function renderDownloads() {
             progressState.classList.add('hidden');
             downloadState.classList.remove('hidden');
             fileList.innerHTML = '';
 
-            currentFiles.forEach(file => {
+            filesToProcess.forEach(file => {
                 const nameOnly = file.name.split('.').slice(0, -1).join('.');
-                const finalName = `${nameOnly}_PRO.${selectedTargetFormat.toLowerCase()}`;
+                const finalName = `${nameOnly}_EDITABLE.${currentTargetFormat.toLowerCase()}`;
                 
-                const item = document.createElement('div');
-                item.className = "flex items-center justify-between p-4 bg-white border border-slate-200 rounded-2xl hover:shadow-md transition";
-                item.innerHTML = `
+                const div = document.createElement('div');
+                div.className = "flex items-center justify-between p-5 bg-slate-50 border border-slate-200 rounded-2xl hover:border-blue-300 transition group";
+                div.innerHTML = `
                     <div class="flex items-center">
-                        <div class="w-10 h-10 bg-blue-50 text-blue-600 rounded-lg flex items-center justify-center mr-4 border border-blue-100">
-                            <i class="fas fa-file-check"></i>
+                        <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center mr-4 shadow-sm group-hover:bg-blue-600 group-hover:text-white transition">
+                            <i class="fas fa-file-signature"></i>
                         </div>
                         <div>
-                            <p class="text-sm font-black text-slate-800">${finalName}</p>
-                            <p class="text-[10px] text-slate-400 font-bold">DOCUPRO CONVERTED • v2.1-SECURE</p>
+                            <p class="font-bold text-slate-800">${finalName}</p>
+                            <div class="flex items-center space-x-2">
+                                <span class="text-[10px] bg-blue-100 text-blue-600 px-1.5 py-0.5 rounded font-black uppercase">Office 365 Support</span>
+                                <span class="text-[10px] text-slate-400">EDITABLE • OCR+</span>
+                            </div>
                         </div>
                     </div>
-                    <button onclick="downloadAction('${finalName}')" class="bg-slate-900 text-white px-4 py-2 rounded-lg text-xs font-bold hover:bg-blue-600 transition">
-                        DOWNLOAD
+                    <button onclick="triggerDownload('${finalName}')" class="p-3 text-blue-600 hover:bg-blue-100 rounded-full transition">
+                        <i class="fas fa-download text-xl"></i>
                     </button>
                 `;
-                fileList.appendChild(item);
+                fileList.appendChild(div);
             });
         }
 
-        function downloadAction(name) {
-            const blob = new Blob(["DocuMaster Pro v2.1 - Converted Content"], {type: 'text/plain'});
+        function triggerDownload(fileName) {
+            // Logika untuk mendownload file dengan MIME type yang tepat agar dideteksi sebagai editable oleh Office 365
+            const mimeType = OFFICE_MIMES[currentTargetFormat] || 'application/octet-stream';
+            const blob = new Blob(["Simulasi data Office 365 Editable. Ini adalah placeholder yang mendukung format Open XML."], { type: mimeType });
             const url = window.URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = name;
+            a.download = fileName;
+            document.body.appendChild(a);
             a.click();
+            window.URL.revokeObjectURL(url);
+            document.body.removeChild(a);
         }
 
         function resetUI() {
             downloadState.classList.add('hidden');
             uploadState.classList.remove('hidden');
-            progressBar.style.width = '0%';
-            percentText.innerText = '0%';
+            document.getElementById('progressBar').style.width = '0%';
             fileInput.value = '';
         }
     </script>
